@@ -22,4 +22,8 @@ Status values: ✅ Automated (passing) · 🐞 Automated, fails because of an ap
 - Each run uses a unique receiver name to find its own row. `afterEach` deletes only the shipment that run created, via `DELETE /api/shipments/:id`.
 
 ## Known application bugs found while automating
-None in the happy path. Open defects from the manual QA cycle (BUG-001..BUG-007) are outside this flow.
+No failures in the happy path. Open defects from the manual QA cycle (BUG-001..BUG-007) are outside this flow.
+
+| Bug | Scenario | Expected | Actual |
+|-----|----------|----------|--------|
+| Login form has no `method="post"` (found in CI run #2) | Submitting /login before its JavaScript has loaded (slow network, script error, JS off) | Credentials are never put in the URL | The browser does a native GET to `/login?email=...&password=...`, exposing the password in the address bar, history and server logs (`src/routes/login/+page.svelte`). The test waits for the page to finish loading, so it does not hit this. |
