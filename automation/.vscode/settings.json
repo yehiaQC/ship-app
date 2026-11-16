@@ -1,0 +1,7 @@
+{
+  "playwright.reuseBrowser": true,
+  "playwright.showTrace": false,
+  "editor.formatOnSave": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "files.exclude": { "test-results": true }
+}
